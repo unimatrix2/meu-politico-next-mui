@@ -183,13 +183,13 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-          <AccountCircle />
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="inherit"
+            >
+            <AccountCircle />
           </IconButton>
           </div>
         </Toolbar>
