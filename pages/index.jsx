@@ -17,7 +17,8 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import AppBar from '../components/navigation/AppBar';
 import { login } from '../services/auth.service';
 import { Context } from '../contexts/auth.context';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/router'; 
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -94,7 +95,9 @@ const useStyles = makeStyles((theme) => ({
   },
   backdropBlur: {
     [theme.breakpoints.only('xs')]: {
-      backdropFilter: 'blur(5px) grayscale(70%)',
+      backdropFilter: theme.palette.type === 'light'
+      ? 'blur(5px) grayscale(90%)'
+      : 'blur(5px) grayscale(90%)',
       backgroundColor: 'transparent'
     },
   },
@@ -128,7 +131,15 @@ const useStyles = makeStyles((theme) => ({
   },
   formLinks: {
     [theme.breakpoints.down(420)]: {
+      color: theme.palette.primary.dark 
+    },
+    [theme.breakpoints.only('xs')]: {
       color: theme.palette.primary.dark
+    },
+    [theme.breakpoints.up('sm')]: {
+      color: theme.palette.type === 'dark'
+      ? theme.palette.primary.light
+      : theme.palette.primary.dark
     }
   }
 }));
@@ -136,7 +147,17 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
 
   const classes = useStyles();
-  const theme = useTheme();
+  
+  const { state, dispatch } = useContext(Context);
+  const [user, setUser] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push('/busca');
+    }
+  }, [user]);
+
   const formik = useFormik({
     initialValues: {
       cpf: '',
@@ -146,9 +167,12 @@ export default function SignInSide() {
     validationSchema: loginSchema,
     onSubmit: async (values, helpers) => {
       try {
-        delete values.remember;
-        const userData = await login(values);
-        values.remember = false;
+        const userData = await login({ cpf: values.cpf, password: values.password });
+        dispatch({
+          type: 'PROVIDE-USER',
+          payload: userData
+        });
+        setUser(userData);
       } catch (error) {
         console.log(error);
       }
@@ -157,7 +181,7 @@ export default function SignInSide() {
 
   return (
     <>
-    <AppBar />
+    <AppBar mobileOnly={true} />
     <Grid container component="main" className={classes.rootGrid}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square className={classes.backdropBlur}>
