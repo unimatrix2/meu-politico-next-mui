@@ -5,4 +5,6 @@ const userStore = (state, action) => {
 		default:
 			return state;
 	}
-} 
+};
+
+export default userStore;
