@@ -11,7 +11,7 @@ export const login = async (form) => {
 };
 
 export const signup = (form) => {
-    instance.post('usuario/registro', form)
+    instance.post('/usuario/registro', form)
     .then((data) => {
         return data.data;
     })
