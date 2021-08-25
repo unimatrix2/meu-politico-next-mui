@@ -6,7 +6,7 @@ const initialState = {
 	user: {},
 };
 
-const Context = createContext({});
+const ThemeContext = createContext({});
 
 const combineReducers =
   (...reducers) =>
@@ -19,11 +19,11 @@ const combineReducers =
 
 const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(
-    combineReducers(userStore),
+    combineReducers(themeStore),
     initialState
   );
   const value = { state, dispatch };
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
-export { Context, Provider };
+export { ThemeContext, Provider };
