@@ -223,6 +223,8 @@ export default function SignInSide() {
               value={formik.values.remember}
               color="primary"
               onChange={formik.handleChange}
+              name="remember"
+              id="remember"
               />}
               label="Lembrar-me"
             />
