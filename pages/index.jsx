@@ -1,24 +1,26 @@
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import InputMask from 'react-input-mask';
-import { useFormik } from 'formik';
-import loginSchema from '../validations/loginSchema';
-import Fab from '@material-ui/core/Fab';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import NextLink from 'next/link';
-import useTheme from '@material-ui/core/styles/useTheme';
+import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import InputMask from 'react-input-mask';
+import { useContext, useState, useEffect } from 'react';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Fab from '@material-ui/core/Fab';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import AppBar from '../components/navigation/AppBar';
+import LandingAppBar from '../components/LandingAppBar';
+import loginSchema from '../validations/loginSchema.validation';
 import { login } from '../services/auth.service';
 import { Context } from '../contexts/auth.context';
-import { useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; 
+import handleThemeChange from '../handlers/themeTrigger.handle';
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -144,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SignInSide() {
+export default function SignInSide({ themeTrigger }) {
 
   const classes = useStyles();
   
@@ -185,6 +187,7 @@ export default function SignInSide() {
     <Grid container component="main" className={classes.rootGrid}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square className={classes.backdropBlur}>
+        <LandingAppBar trigger={themeTrigger} />
         <div className={classes.paper}>
           <Typography className={classes.headerTitle}>Meu Político</Typography>
           <Typography className={classes.headerSubtitle}>Seu voto, no seu bolso.</Typography>
@@ -252,7 +255,11 @@ export default function SignInSide() {
           </form>
         </div>
         <NextLink href="/busca">
-          <Fab variant="extended" color="primary" className={classes.searchButton}>
+          <Fab
+            variant="extended"
+            color="primary"
+            className={classes.searchButton}
+          >
             Buscar
             <ArrowForwardIcon className={classes.sbIcon} />
           </Fab>
