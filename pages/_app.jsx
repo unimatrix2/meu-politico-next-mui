@@ -1,8 +1,9 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Provider as AuthProvider } from '../contexts/auth.context';
 import { ThemeProvider } from '@material-ui/core';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
 import handleThemeSetup from '../handlers/theme.handle';
+import { Provider as AuthProvider } from '../contexts/auth.context';
 
 function MyApp({ Component, pageProps }) {
 
