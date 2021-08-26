@@ -2,7 +2,6 @@ import { useReducer, createContext } from "react";
 import userStore from "./stores/user.store";
 
 const initialState = {
-	deviceWindow: {},
 	user: {},
 };
 
