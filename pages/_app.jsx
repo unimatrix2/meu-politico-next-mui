@@ -4,24 +4,33 @@ import { createTheme, ThemeProvider } from '@material-ui/core';
 import { appTheme, darkTheme } from '../styles/theme';
 import { setDefaultTheme, getDefaultTheme } from '../services/theme.service';
 import { Provider as TCProvider } from '../contexts/theme.context';
+import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
 
-  let theme = getDefaultTheme();
-  if (theme && theme == 'dark') {
-    theme = createTheme(darkTheme);
-  } else {
-    theme = createTheme(appTheme);
-    setDefaultTheme('light');
-  }
+  const [theme, setTheme] = useState();
 
+  useEffect(() => {
+    switch (getDefaultTheme()) {
+      case 'light':
+        setTheme(createTheme(appTheme));
+        break;
+      case 'dark':
+        setTheme(createTheme(darkTheme));
+        break;
+      default:
+        setTheme(createTheme(appTheme));
+        setDefaultTheme('light');
+        break;
+    }
+  }, []);
 
   return <AuthProvider>
     <TCProvider>
-      <ThemeProvider theme={theme}>
+      {theme ? <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
-      </ThemeProvider>
+      </ThemeProvider> : null}
     </TCProvider>
   </AuthProvider>
 }
