@@ -6,6 +6,7 @@ export const login = async (form) => {
         const data = await instance.post('/usuario/acesso', form);
         return data.data;
     } catch (error) {
+        console.log(error)
         throw new AppError(error.data);
     }
 };
