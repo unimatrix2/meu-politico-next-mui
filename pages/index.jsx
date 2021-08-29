@@ -21,6 +21,7 @@ import loginSchema from '../validations/loginSchema.validation';
 import { login } from '../services/auth.service';
 import { Context } from '../contexts/auth.context';
 import handleThemeChange from '../handlers/themeTrigger.handle';
+import AppError from '../errors/AppError';
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -176,7 +177,7 @@ export default function SignInSide({ themeTrigger }) {
         });
         setUser(userData);
       } catch (error) {
-        console.log(error);
+        console.log(new AppError(error));
       }
     }
   });
