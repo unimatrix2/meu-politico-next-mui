@@ -22,6 +22,7 @@ import { login } from '../services/auth.service';
 import { Context } from '../contexts/auth.context';
 import handleThemeChange from '../handlers/themeTrigger.handle';
 import AppError from '../errors/AppError';
+import { useAuth } from '../hooks/useAuth';
 
 const useStyles = makeStyles((theme) => ({
   rootGrid: {
@@ -155,11 +156,13 @@ export default function SignInSide({ themeTrigger }) {
   const [user, setUser] = useState();
   const router = useRouter();
 
+  useAuth();
+
   useEffect(() => {
-    if (user) {
+    if (user || state.user?.cpf) {
       router.push('/busca');
     }
-  }, [user]);
+  }, [user, state.user?.cpf]);
 
   const formik = useFormik({
     initialValues: {
@@ -171,6 +174,7 @@ export default function SignInSide({ themeTrigger }) {
     onSubmit: async (values, helpers) => {
       try {
         const userData = await login({ cpf: values.cpf, password: values.password });
+        console.log(userData);
         dispatch({
           type: 'PROVIDE-USER',
           payload: userData
