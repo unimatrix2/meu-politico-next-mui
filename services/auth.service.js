@@ -20,3 +20,7 @@ export const signup = (form) => {
         return err;
     });
 };
+
+export const logout = async () => {
+    await instance.get('/usuario/logout');
+}
