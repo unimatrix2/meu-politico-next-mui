@@ -2,20 +2,18 @@ import React from 'react';
 import Menu from '@material-ui/core/Menu';
 import Badge from '@material-ui/core/Badge';
 import AppBar from '@material-ui/core/AppBar';
-import MenuIcon from '@material-ui/icons/Menu';
-import MailIcon from '@material-ui/icons/Mail';
+import FaceIcon from '@material-ui/icons/Face';
 import Toolbar from '@material-ui/core/Toolbar';
+import ThemeSwitcher from '../ThemeSwitchButton';
 import MenuItem from '@material-ui/core/MenuItem';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-export default function PrimarySearchAppBar({ mobileOnly }) {
+export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
 
   const useStyles = makeStyles((theme) => ({
     grow: {
@@ -119,8 +117,18 @@ export default function PrimarySearchAppBar({ mobileOnly }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <FaceIcon />
+        </IconButton>
+        <p>Meu Perfil</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <LockOutlinedIcon />
+        </IconButton>
+        <p>Sair</p>
+      </MenuItem>
     </Menu>
   );
 
@@ -136,31 +144,16 @@ export default function PrimarySearchAppBar({ mobileOnly }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+        <IconButton aria-label="icone de administração de perfil" color="inherit">
+          <FaceIcon />
         </IconButton>
-        <p>Messages</p>
+        <p>Meu Perfil</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+        <IconButton aria-label="icone de logout" color="inherit">
+          <LockOutlinedIcon />
         </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+        <p>Sair</p>
       </MenuItem>
     </Menu>
   );
@@ -171,6 +164,7 @@ export default function PrimarySearchAppBar({ mobileOnly }) {
         <Toolbar>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <ThemeSwitcher trigger={trigger} />
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -183,11 +177,13 @@ export default function PrimarySearchAppBar({ mobileOnly }) {
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
+            <ThemeSwitcher trigger={trigger} />
             <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
               aria-haspopup="true"
               color="inherit"
+              onClick={handleMobileMenuOpen}
             >
             <AccountCircle />
           </IconButton>
