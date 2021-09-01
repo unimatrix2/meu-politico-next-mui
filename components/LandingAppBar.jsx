@@ -1,15 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import ThemeSwitcher from './ThemeSwitchButton';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Brightness6Icon from '@material-ui/icons/Brightness6';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import handleThemeChange from '../handlers/themeTrigger.handle';
-import { useTheme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +31,7 @@ export default function LandingAppBar({ trigger }) {
         <Toolbar>
 				<Typography variant="h6" className={classes.title}>
           </Typography>
-					<IconButton onClick={() => handleThemeChange(trigger)}>
-						{theme.palette.type === 'light' ? <Brightness6Icon /> : <Brightness4Icon />}
-					</IconButton>
+					<ThemeSwitcher trigger={trigger} landing={true} />
         </Toolbar>
       </AppBar>
     </div>
