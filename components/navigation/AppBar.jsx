@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext, useState } from 'react';
 import Menu from '@material-ui/core/Menu';
 import Badge from '@material-ui/core/Badge';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,8 +7,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ThemeSwitcher from '../ThemeSwitchButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputBase from '@material-ui/core/InputBase';
+import { logout } from '../../services/auth.service';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import { Context } from '../../contexts/auth.context';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -81,10 +83,13 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
         display: 'none',
       },
     },
-  })); 
+  }));
+
+  const { state, dispatch } = useContext(Context);
+
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -118,13 +123,17 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
       onClose={handleMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        <IconButton aria-label="Administração de dados da conta" color="inherit">
           <FaceIcon />
         </IconButton>
         <p>Meu Perfil</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+      <MenuItem onClick={async () => {
+          await logout();
+          dispatch({ type: 'LOGOUT' });
+          setAnchorEl(null);
+        }}>
+        <IconButton aria-label="Finalizar sessão" color="inherit">
           <LockOutlinedIcon />
         </IconButton>
         <p>Sair</p>
@@ -149,7 +158,11 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
         </IconButton>
         <p>Meu Perfil</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem onClick={async () => {
+          await logout();
+          dispatch({ type: 'LOGOUT' });
+          setMobileMoreAnchorEl(null);
+        }}>
         <IconButton aria-label="icone de logout" color="inherit">
           <LockOutlinedIcon />
         </IconButton>
@@ -165,7 +178,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <ThemeSwitcher trigger={trigger} />
-            <IconButton
+            {state.user?.cpf ? <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -174,11 +187,11 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> : null}
           </div>
           <div className={classes.sectionMobile}>
             <ThemeSwitcher trigger={trigger} />
-            <IconButton
+            {state.user?.cpf ? <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
               aria-haspopup="true"
@@ -186,7 +199,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
               onClick={handleMobileMenuOpen}
             >
             <AccountCircle />
-          </IconButton>
+          </IconButton> : null}
           </div>
         </Toolbar>
       </AppBar>
