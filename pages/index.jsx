@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    filter: 'grayscale(90%)',
+    filter: theme.palette.type === 'light' ? 'grayscale(50%)' : 'grayscale(90%)',
   },
   paper: {
     marginBottom: theme.spacing(8),
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   backdropBlur: {
     [theme.breakpoints.only('xs')]: {
       backdropFilter: theme.palette.type === 'light'
-      ? 'blur(5px) grayscale(90%)'
+      ? 'blur(5px) grayscale(80%)'
       : 'blur(5px) grayscale(90%)',
       backgroundColor: 'transparent'
     },
@@ -188,7 +188,7 @@ export default function SignInSide({ themeTrigger }) {
 
   return (
     <>
-    <AppBar mobileOnly={true} />
+    <AppBar mobileOnly={true} trigger={themeTrigger} />
     <Grid container component="main" className={classes.rootGrid}>
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square className={classes.backdropBlur}>
