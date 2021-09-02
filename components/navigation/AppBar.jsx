@@ -83,6 +83,9 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
         display: 'none',
       },
     },
+    dropdownIcon: {
+      marginRight: theme.spacing(1)
+    }
   }));
 
   const { state, dispatch } = useContext(Context);
@@ -123,9 +126,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
       onClose={handleMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="Administração de dados da conta" color="inherit">
-          <FaceIcon />
-        </IconButton>
+          <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
       <MenuItem onClick={async () => {
@@ -133,9 +134,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
           dispatch({ type: 'LOGOUT' });
           setAnchorEl(null);
         }}>
-        <IconButton aria-label="Finalizar sessão" color="inherit">
-          <LockOutlinedIcon />
-        </IconButton>
+          <LockOutlinedIcon className={classes.dropdownIcon} />
         <p>Sair</p>
       </MenuItem>
     </Menu>
@@ -153,9 +152,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="icone de administração de perfil" color="inherit">
-          <FaceIcon />
-        </IconButton>
+          <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
       <MenuItem onClick={async () => {
@@ -163,9 +160,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
           dispatch({ type: 'LOGOUT' });
           setMobileMoreAnchorEl(null);
         }}>
-        <IconButton aria-label="icone de logout" color="inherit">
-          <LockOutlinedIcon />
-        </IconButton>
+          <LockOutlinedIcon className={classes.dropdownIcon} />
         <p>Sair</p>
       </MenuItem>
     </Menu>
