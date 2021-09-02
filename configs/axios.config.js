@@ -6,9 +6,4 @@ const instance = axios.create({
 	withCredentials: true,
 });
 
-/* instance.interceptors.request.use(function (response) {
-  console.log(response.headers.get('Set-Cookie'));
-  return response;
-}) */
-
 export default instance;
