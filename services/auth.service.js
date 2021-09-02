@@ -1,13 +1,18 @@
 import instance from "../configs/axios.config";
 import AppError from "../errors/AppError";
 
-export const login = async (form) => {
+export const login = async (form, helpers, dispatch) => {
     try {
-        const data = await instance.post('/usuario/acesso', form);
-        return data.data;
+        const { data } = await instance.post('/usuario/acesso', form);
+        dispatch({
+            type: 'PROVIDE-USER',
+            payload: data
+        });
     } catch (error) {
-        console.log(error)
-        throw new AppError(error.data);
+        if (error.response.data.type) {
+            helpers.setFieldError('cpf', 'CPF ou senha incorretos');
+            helpers.setFieldError('password', 'CPF ou senha incorretos');
+        }
     }
 };
 
