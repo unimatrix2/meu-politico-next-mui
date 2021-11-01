@@ -1,19 +1,20 @@
 import { useContext, useState } from 'react';
-import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge';
-import AppBar from '@material-ui/core/AppBar';
-import FaceIcon from '@material-ui/icons/Face';
-import Toolbar from '@material-ui/core/Toolbar';
+import Menu from '@mui/material/Menu';
+import Badge from '@mui/material/Badge';
+import AppBar from '@mui/material/AppBar';
+import FaceIcon from '@mui/icons-material/Face';
+import Toolbar from '@mui/material/Toolbar';
 import ThemeSwitcher from '../ThemeSwitchButton';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputBase from '@material-ui/core/InputBase';
+import MenuItem from '@mui/material/MenuItem';
+import InputBase from '@mui/material/InputBase';
 import { logout } from '../../services/auth.service';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { Context } from '../../contexts/auth.context';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { alpha } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
 
@@ -64,7 +65,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
     inputInput: {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
@@ -180,7 +181,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
-            >
+              size="large">
               <AccountCircle />
             </IconButton> : null}
           </div>
@@ -192,7 +193,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
               aria-haspopup="true"
               color="inherit"
               onClick={handleMobileMenuOpen}
-            >
+              size="large">
             <AccountCircle />
           </IconButton> : null}
           </div>

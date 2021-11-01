@@ -1,12 +1,12 @@
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import Fab from '@material-ui/core/Fab';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Fab from '@mui/material/Fab';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { useContext, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import Typography from '@mui/material/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { useAuth } from '../hooks/useAuth';
 import { Context } from '../contexts/auth.context';
@@ -32,16 +32,16 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   image: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none'
     },
     backgroundImage: 'url(/tse.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+      theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    filter: theme.palette.type === 'light' ? 'grayscale(50%)' : 'grayscale(90%)',
+    filter: theme.palette.mode === 'light' ? 'grayscale(50%)' : 'grayscale(90%)',
   },
   paper: {
     marginBottom: theme.spacing(8),
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   backdropBlur: {
     [theme.breakpoints.only('xs')]: {
-      backdropFilter: theme.palette.type === 'light'
+      backdropFilter: theme.palette.mode === 'light'
       ? 'blur(5px) grayscale(80%)'
       : 'blur(5px) grayscale(90%)',
       backgroundColor: 'transparent'

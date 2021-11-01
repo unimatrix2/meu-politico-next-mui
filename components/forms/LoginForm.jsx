@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { useFormik } from 'formik';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import makeStyles from '@mui/styles/makeStyles';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { login } from '../../services/auth.service';
 import { Context } from '../../contexts/auth.context';
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.primary.dark
     },
     [theme.breakpoints.up('sm')]: {
-      color: theme.palette.type === 'dark'
+      color: theme.palette.mode === 'dark'
       ? theme.palette.primary.light
       : theme.palette.primary.dark
     }

@@ -1,6 +1,6 @@
-import { useEffect, useContext } from "react";
-import instance from "../configs/axios.config";
-import { Context } from "../contexts/auth.context";
+import { useEffect, useContext } from 'react';
+import instance from '../configs/axios.config';
+import { Context } from '../contexts/auth.context';
 
 export const useAuth = () => {
 	const { state, dispatch } = useContext(Context);

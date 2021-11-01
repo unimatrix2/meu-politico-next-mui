@@ -1,5 +1,5 @@
-import { setDefaultTheme, getDefaultTheme } from "../services/theme.service"
-
+import { setDefaultTheme, getDefaultTheme } from '../services/theme.service';
+;
 const handleThemeChange = (trigger) => {
   switch(getDefaultTheme()) {
     case 'light':
