@@ -1,6 +1,6 @@
-import { getDefaultTheme, setDefaultTheme } from "../services/theme.service";
-import { createTheme } from "@material-ui/core";
-import { appTheme, darkTheme } from "../styles/theme";
+import { getDefaultTheme, setDefaultTheme } from '../services/theme.service';
+import { createTheme } from '@mui/material';
+import { appTheme, darkTheme } from '../styles/theme';
 
 const handleThemeSetup = updater => {
   switch (getDefaultTheme()) {

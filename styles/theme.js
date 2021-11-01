@@ -1,4 +1,4 @@
-import { lightGreen, grey, teal, indigo, blueGrey, common } from '@material-ui/core/colors';
+import { lightGreen, grey, teal, indigo, blueGrey, common } from '@mui/material/colors';
 
 export const appTheme = {
   typography: {
@@ -7,7 +7,7 @@ export const appTheme = {
     }
   },
   palette: {
-		type: 'light',
+		mode: 'light',
     primary: {
       light: lightGreen[100],
       main: lightGreen[500],
@@ -30,7 +30,7 @@ export const darkTheme = {
     }
   },
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
       main: indigo[500],
       light: indigo[100],

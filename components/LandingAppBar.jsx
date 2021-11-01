@@ -1,14 +1,14 @@
-import { useTheme } from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import { useTheme } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 import ThemeSwitcher from './ThemeSwitchButton';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-		[theme.breakpoints.down('xs')]: {
+		[theme.breakpoints.down('sm')]: {
 			display: 'none'
 		}
   },
