@@ -56,10 +56,7 @@ export default function LoginForm() {
 		validationSchema: loginSchema,
 		onSubmit: async (values, helpers) => {
 			await login(
-				{
-					cpf: values.cpf,
-					password: values.password,
-				},
+				values,
 				helpers,
 				dispatch
 			);
