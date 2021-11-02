@@ -12,53 +12,58 @@ import { login } from '../../services/auth.service';
 import { Context } from '../../contexts/auth.context';
 import loginSchema from '../../validations/loginSchema.validation';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    [theme.breakpoints.only('xs')]: {
-      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-      borderRadius: 5,
-      padding: theme.spacing(3),
-      marginTop: theme.spacing(8),
-    }
-  },
+		width: '100%', // Fix IE 11 issue.
+		marginTop: theme.spacing(1),
+		[theme.breakpoints.only('xs')]: {
+			backgroundColor: 'rgba(255, 255, 255, 0.3)',
+			borderRadius: 5,
+			padding: theme.spacing(3),
+			marginTop: theme.spacing(8),
+		},
+	},
 	submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+		margin: theme.spacing(3, 0, 2),
+	},
 	formLinks: {
-    [theme.breakpoints.down(420)]: {
-      color: theme.palette.primary.dark 
-    },
-    [theme.breakpoints.only('xs')]: {
-      color: theme.palette.primary.dark
-    },
-    [theme.breakpoints.up('sm')]: {
-      color: theme.palette.mode === 'dark'
-      ? theme.palette.primary.light
-      : theme.palette.primary.dark
-    }
-  }
-}))
+		[theme.breakpoints.down(420)]: {
+			color: theme.palette.primary.dark,
+		},
+		[theme.breakpoints.only('xs')]: {
+			color: theme.palette.primary.dark,
+		},
+		[theme.breakpoints.up("sm")]: {
+			color:
+				theme.palette.mode === 'dark'
+					? theme.palette.primary.light
+					: theme.palette.primary.dark,
+		},
+	},
+}));
 
 export default function LoginForm() {
-	const { dispatch }= useContext(Context);
+	const { dispatch } = useContext(Context);
 
 	const classes = useStyles();
 
 	const formik = useFormik({
-    initialValues: {
-      cpf: '',
-      password: '',
-      remember: false
-    },
-    validationSchema: loginSchema,
-    onSubmit: async (values, helpers) => {
-			await login({
-				cpf: values.cpf,
-				password: values.password
-			}, helpers, dispatch);
-		}
+		initialValues: {
+			cpf: '',
+			password: '',
+			remember: false,
+		},
+		validationSchema: loginSchema,
+		onSubmit: async (values, helpers) => {
+			await login(
+				{
+					cpf: values.cpf,
+					password: values.password,
+				},
+				helpers,
+				dispatch
+			);
+		},
 	});
 
 	return (
