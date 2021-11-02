@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function LoginForm() {
+export default function LoginForm( {setSignup} ) {
 	const { dispatch } = useContext(Context);
 
 	const classes = useStyles();
@@ -122,8 +122,8 @@ export default function LoginForm() {
 					</Link>
 				</Grid>
 				<Grid item>
-					<Link href="#" variant="body2" className={classes.formLinks}>
-						{"Criar uma conta"}
+					<Link href="#" variant="body2" className={classes.formLinks} onClick={() => setSignup(true)}>
+						Criar uma conta
 					</Link>
 				</Grid>
 			</Grid>
