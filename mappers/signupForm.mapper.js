@@ -1,4 +1,4 @@
-export default signupFormMapper = (form) => {
+const signupFormMapper = (form) => {
 	const {
 		cpf,
 		email,
@@ -14,3 +14,5 @@ export default signupFormMapper = (form) => {
 		firstName,
 	};
 };
+
+export default signupFormMapper;
