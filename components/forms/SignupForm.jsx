@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.only('xs')]: {
 			color: theme.palette.primary.dark,
 		},
-		[theme.breakpoints.up("sm")]: {
+		[theme.breakpoints.up('sm')]: {
 			color:
 				theme.palette.mode === 'dark'
 					? theme.palette.primary.light
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignupForm( {setSignup} ) {
+export default function SignupForm({ setSignup }) {
 	const { dispatch } = useContext(Context);
 
 	const classes = useStyles();
@@ -48,19 +48,15 @@ export default function SignupForm( {setSignup} ) {
 	const formik = useFormik({
 		initialValues: {
 			cpf: '',
-      email: '',
+			email: '',
 			password: '',
-      lastName: '',
-      firstName: '',
-      confirmPassword: '',
+			lastName: '',
+			firstName: '',
+			confirmPassword: '',
 		},
 		validationSchema: signupSchema,
 		onSubmit: async (values, helpers) => {
-			await signup(
-				values,
-				helpers,
-				dispatch
-			);
+			await signup(values, helpers, dispatch);
 		},
 	});
 
@@ -151,8 +147,13 @@ export default function SignupForm( {setSignup} ) {
 				id="confirmPassword"
 				value={formik.values.confirmPassword}
 				onChange={formik.handleChange}
-				helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
-				error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+				helperText={
+					formik.touched.confirmPassword && formik.errors.confirmPassword
+				}
+				error={
+					formik.touched.confirmPassword &&
+					Boolean(formik.errors.confirmPassword)
+				}
 			/>
 			<Button
 				type="submit"
@@ -165,7 +166,11 @@ export default function SignupForm( {setSignup} ) {
 			</Button>
 			<Grid container>
 				<Grid item>
-					<Link variant="body2" className={classes.formLinks} onClick={() => setSignup(false)}>
+					<Link
+						variant="body2"
+						className={classes.formLinks}
+						onClick={() => setSignup(false)}
+					>
 						Acessar minha conta
 					</Link>
 				</Grid>
