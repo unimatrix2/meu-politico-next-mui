@@ -18,5 +18,5 @@ export const useAuth = () => {
 					console.log(err)
 				})
 		}
-	}, [state.user]);
+	}, [state.user, dispatch]);
 }
