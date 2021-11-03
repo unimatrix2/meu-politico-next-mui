@@ -1,6 +1,4 @@
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import cookies from '../configs/cookies.config';
 
 export const setDefaultTheme = (theme) => {
 	cookies.set('theme', theme);
