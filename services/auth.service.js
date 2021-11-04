@@ -1,16 +1,22 @@
 import instance from '../configs/axios.config';
+import cookies from '../configs/cookies.config';
 import loginFormMapper from '../mappers/loginForm.mapper';
 import signupFormMapper from '../mappers/signupForm.mapper';
 
 export const login = async (form, helpers, dispatch) => {
 	try {
-		const { data } = await instance.post(
-			'/usuario/acesso',
-			loginFormMapper(form)
-		);
+		const { headers, data } = await instance({
+			method: 'post',
+			url: '/usuario/acesso',
+			data: loginFormMapper(form)
+		});
+		cookies.set('token', headers.authorization, {
+			sameSite: 'strict',
+			maxAge: 432000000
+		});
 		dispatch({
 			type: 'PROVIDE-USER',
-			payload: data,
+			payload: data
 		});
 	} catch (error) {
 		if (error.response.data.type) {
@@ -32,6 +38,6 @@ export const signup = async (form, helpers, dispatch) => {
 	}
 };
 
-export const logout = async () => {
-	await instance.get('/usuario/logout');
+export const logout = () => {
+	cookies.remove('token');
 };
