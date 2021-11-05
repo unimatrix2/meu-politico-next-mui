@@ -1,13 +1,15 @@
 import axios from 'axios';
-import cookies from './cookies.config';
+import { getAuthCookie } from '../utils/authCookieManager.util';
 
-const instance = axios.create({
+export const instance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 	timeout: 3000,
 	withCredentials: true,
   headers: {
-    Authorization: cookies.get('token') || ''
+    Authorization: getAuthCookie() || ''
   }
 });
 
-export default instance;
+export const source = axios.CancelToken.source();
+
+export const { isCancel } = axios;
