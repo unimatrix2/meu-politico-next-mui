@@ -31,7 +31,27 @@ export const signup = async (form, helpers, dispatch) => {
 		);
 		return true;
 	} catch (error) {
-		// error handling here
+		if (error.response.data.type) {
+			switch (error.response.data.type) {
+				case 'Registro-CPF-Invalido':
+					helpers.setFieldError('cpf', 'CPF Inválido');
+					break;
+				case 'Usuario-Criar-Email':
+					helpers.setFieldError('email', 'Email já cadastrado');
+					break;
+				case 'Usuario-Criar-Cpf':
+					helpers.setFieldError('cpf', 'CPF já cadastrado');
+					break;
+				case 'Usuario-Criar-Email-Cpf':
+					helpers.setFieldError('email', 'Email já cadastrado');
+					helpers.setFieldError('cpf', 'CPF já cadastrado');
+					break;
+				case 'Usuario-Criar-Cpf-Email':
+					helpers.setFieldError('email', 'Email já cadastrado');
+					helpers.setFieldError('cpf', 'CPF já cadastrado');
+					break;
+			}
+		}
 	}
 };
 
