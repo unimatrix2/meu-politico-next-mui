@@ -130,7 +130,7 @@ export default function SignInSide({ themeTrigger }) {
 		if (state.user?.cpf) {
 			router.push('/busca');
 		}
-	}, [state.user?.cpf]);
+	}, [state.user?.cpf, router]);
 
 	return (
 		<>
