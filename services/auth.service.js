@@ -1,5 +1,5 @@
-import instance from '../configs/axios.config';
-import cookies from '../configs/cookies.config';
+import { instance } from '../configs/axios.config';
+import { setAuthCookie, removeAuthCookie } from '../utils/authCookieManager.util';
 import loginFormMapper from '../mappers/loginForm.mapper';
 import signupFormMapper from '../mappers/signupForm.mapper';
 
@@ -10,10 +10,7 @@ export const login = async (form, helpers, dispatch) => {
 			url: '/usuario/acesso',
 			data: loginFormMapper(form)
 		});
-		cookies.set('token', headers.authorization, {
-			sameSite: 'strict',
-			maxAge: 432000000
-		});
+		setAuthCookie(headers.authorization, form.remember);
 		dispatch({
 			type: 'PROVIDE-USER',
 			payload: data
@@ -39,5 +36,6 @@ export const signup = async (form, helpers, dispatch) => {
 };
 
 export const logout = () => {
-	cookies.remove('token');
+	removeAuthCookie();
+
 };
