@@ -60,9 +60,9 @@ function SignupForm({ setSignup, snack }) {
 					snack(
 						'Usuário registrado com sucesso!',
 						'success',
-						2000
+						1500
 					);
-					setTimeout(() => setSignup(false), 2500);
+					setTimeout(() => setSignup(false), 1650);
 					break;
 				case false:
 					snack(
