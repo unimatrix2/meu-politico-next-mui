@@ -1,5 +1,8 @@
 import { instance } from '../configs/axios.config';
-import { setAuthCookie, removeAuthCookie } from '../utils/authCookieManager.util';
+import {
+	setAuthCookie,
+	removeAuthCookie,
+} from '../utils/authCookieManager.util';
 import loginFormMapper from '../mappers/loginForm.mapper';
 import signupFormMapper from '../mappers/signupForm.mapper';
 
@@ -8,12 +11,12 @@ export const login = async (form, helpers, dispatch) => {
 		const { headers, data } = await instance({
 			method: 'post',
 			url: '/usuario/acesso',
-			data: loginFormMapper(form)
+			data: loginFormMapper(form),
 		});
 		setAuthCookie(headers.authorization, form.remember);
 		dispatch({
 			type: 'PROVIDE-USER',
-			payload: data
+			payload: data,
 		});
 	} catch (error) {
 		if (error.response.data.type) {
@@ -25,10 +28,7 @@ export const login = async (form, helpers, dispatch) => {
 
 export const signup = async (form, helpers) => {
 	try {
-		await instance.post(
-			'/usuario/registro',
-			signupFormMapper(form)
-		);
+		await instance.post('/usuario/registro', signupFormMapper(form));
 		return true;
 	} catch (error) {
 		if (error.response.data.type) {
@@ -58,5 +58,4 @@ export const signup = async (form, helpers) => {
 
 export const logout = () => {
 	removeAuthCookie();
-
 };
