@@ -130,8 +130,8 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
           <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
-      <MenuItem onClick={async () => {
-          await logout();
+      <MenuItem onClick={() => {
+          logout();
           dispatch({ type: 'LOGOUT' });
           setAnchorEl(null);
         }}>
@@ -156,8 +156,8 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
           <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
-      <MenuItem onClick={async () => {
-          await logout();
+      <MenuItem onClick={() => {
+          logout();
           dispatch({ type: 'LOGOUT' });
           setMobileMoreAnchorEl(null);
         }}>
