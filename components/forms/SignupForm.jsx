@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { useFormik } from 'formik';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -6,8 +5,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import makeStyles from '@mui/styles/makeStyles';
 
+import { withSnackBar } from '../SnackBar';
 import { signup } from '../../services/auth.service';
-import { Context } from '../../contexts/auth.context';
 import signupSchema from '../../validations/signupSchema.validation';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function SignupForm({ setSignup }) {
-	const { dispatch } = useContext(Context);
+function SignupForm({ setSignup, snack }) {
 
 	const classes = useStyles();
 
@@ -56,7 +54,24 @@ export default function SignupForm({ setSignup }) {
 		},
 		validationSchema: signupSchema,
 		onSubmit: async (values, helpers) => {
-			await signup(values, helpers, dispatch);
+			const success = await signup(values, helpers);
+			switch (success) {
+				case true:
+					snack(
+						'Usuário registrado com sucesso!',
+						'success',
+						2000
+					);
+					setTimeout(() => setSignup(false), 2500);
+					break;
+				case false:
+					snack(
+						'Oops! Algo deu errado.',
+						'error',
+						4000
+					);
+					break;
+			}
 		},
 	});
 
@@ -178,3 +193,5 @@ export default function SignupForm({ setSignup }) {
 		</form>
 	);
 }
+
+export default withSnackBar(SignupForm);
