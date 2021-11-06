@@ -23,7 +23,7 @@ export const login = async (form, helpers, dispatch) => {
 	}
 };
 
-export const signup = async (form, helpers, dispatch) => {
+export const signup = async (form, helpers) => {
 	try {
 		await instance.post(
 			'/usuario/registro',
@@ -52,6 +52,7 @@ export const signup = async (form, helpers, dispatch) => {
 					break;
 			}
 		}
+		return false;
 	}
 };
 
