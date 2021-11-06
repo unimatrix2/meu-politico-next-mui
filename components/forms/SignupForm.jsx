@@ -177,7 +177,7 @@ function SignupForm({ setSignup, snack }) {
 				color="primary"
 				className={classes.submit}
 			>
-				Acessar
+				Registrar
 			</Button>
 			<Grid container>
 				<Grid item>
