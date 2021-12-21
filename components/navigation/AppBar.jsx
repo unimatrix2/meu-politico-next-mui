@@ -2,21 +2,22 @@ import { useContext, useState } from 'react';
 import Menu from '@mui/material/Menu';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
-import FaceIcon from '@mui/icons-material/Face';
 import Toolbar from '@mui/material/Toolbar';
-import ThemeSwitcher from '../ThemeSwitchButton';
+import { alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
+import FaceIcon from '@mui/icons-material/Face';
 import InputBase from '@mui/material/InputBase';
-import { logout } from '../../services/auth.service';
+import makeStyles from '@mui/styles/makeStyles';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Context } from '../../contexts/auth.context';
-import { alpha } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-export default function PrimarySearchAppBar({ mobileOnly, trigger }) {
+import { logout } from '../../services/auth.service';
+import { Context } from '../../contexts/auth.context';
+import ThemeSwitcher from '../ThemeSwitchButton';
+
+export default function PrimarySearchAppBar({ mobileOnly, trigger, ...props }) {
 
   const useStyles = makeStyles((theme) => ({
     grow: {
