@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
+
+import { useAuth } from '../hooks/useAuth';
 import { Context } from '../contexts/auth.context';
 import PrimarySearchAppBar from '../components/navigation/AppBar';
-import { useAuth } from '../hooks/useAuth';
 
 
 export default function Search({ themeTrigger }) {
