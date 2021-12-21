@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import Menu from '@mui/material/Menu';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
@@ -95,6 +96,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger, ...props }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const router = useRouter();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -127,7 +129,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger, ...props }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={() => router.push('/conta')}>
           <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
@@ -153,7 +155,7 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger, ...props }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem onClick={() => router.push('/conta')}>
           <FaceIcon className={classes.dropdownIcon} />
         <p>Meu Perfil</p>
       </MenuItem>
