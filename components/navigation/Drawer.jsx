@@ -153,6 +153,7 @@ function AppDrawer({ mobileOnly, trigger, upperDrawer, lowerDrawer, ...props }) 
           logout();
           dispatch({ type: 'LOGOUT' });
           setAnchorEl(null);
+          router.push('/');
         }}>
           <LockOutlinedIcon className={classes.dropdownIcon} />
         <p>Sair</p>
