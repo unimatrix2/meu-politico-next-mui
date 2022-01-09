@@ -6,6 +6,7 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 import UserDataForm from '../components/forms/UserDataForm';
+import PasswordResetForm from '../components/forms/PasswordResetForm';
 
 export const upperDrawerItemsEnum = [
     {
@@ -16,7 +17,7 @@ export const upperDrawerItemsEnum = [
     {
         text: 'Reset de Senha',
         icon: <LockIcon />,
-        component: null
+        component: <PasswordResetForm />
     },
     {
         text: 'Atividade Recente',
