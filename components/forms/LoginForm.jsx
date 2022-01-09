@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import makeStyles from '@mui/styles/makeStyles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import { withSnackBar } from '../SnackBar';
 import { login } from '../../services/auth.service';
 import { Context } from '../../contexts/auth.context';
 import loginSchema from '../../validations/loginSchema.validation';
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function LoginForm( {setSignup} ) {
+function LoginForm({ setSignup, snack }) {
 	const { dispatch } = useContext(Context);
 
 	const classes = useStyles();
@@ -58,7 +59,8 @@ export default function LoginForm( {setSignup} ) {
 			await login(
 				values,
 				helpers,
-				dispatch
+				dispatch,
+				snack
 			);
 		},
 	});
@@ -130,3 +132,5 @@ export default function LoginForm( {setSignup} ) {
 		</form>
 	);
 }
+
+export default withSnackBar(LoginForm);

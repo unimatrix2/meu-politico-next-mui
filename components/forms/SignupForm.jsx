@@ -55,24 +55,11 @@ function SignupForm({ setSignup, snack }) {
 		},
 		validationSchema: signupSchema,
 		onSubmit: async (values, helpers) => {
-			const success = await signup(values, helpers);
-			switch (success) {
-				case true:
-					snack(
-						'Usuário registrado com sucesso!',
-						'success',
-						1500
-					);
-					setTimeout(() => setSignup(false), 1650);
-					break;
-				case false:
-					snack(
-						'Oops! Algo deu errado.',
-						'error',
-						4000
-					);
-					break;
-			}
+			await signup(
+				values,
+				helpers,
+				snack
+			);
 		},
 	});
 

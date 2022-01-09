@@ -6,7 +6,7 @@ import {
 import loginFormMapper from '../mappers/loginForm.mapper';
 import signupFormMapper from '../mappers/signupForm.mapper';
 
-export const login = async (form, helpers, dispatch) => {
+export const login = async (form, helpers, dispatch, snackBar) => {
 	try {
 		const { headers, data } = await instance({
 			method: 'post',
@@ -23,13 +23,22 @@ export const login = async (form, helpers, dispatch) => {
 			helpers.setFieldError('cpf', 'CPF ou senha incorretos');
 			helpers.setFieldError('password', 'CPF ou senha incorretos');
 		}
+		snackBar(
+			'Oops! Algo deu errado.',
+			'error',
+			4000
+		);
 	}
 };
 
-export const signup = async (form, helpers) => {
+export const signup = async (form, helpers, snackBar) => {
 	try {
 		await instance.post('/usuario/registro', signupFormMapper(form));
-		return true;
+		snackBar(
+			'Usuário registrado com sucesso!',
+			'success',
+			1500
+		);
 	} catch (error) {
 		if (error.response.data.type) {
 			switch (error.response.data.type) {
@@ -52,7 +61,11 @@ export const signup = async (form, helpers) => {
 					break;
 			}
 		}
-		return false;
+		snackBar(
+			'Oops! Algo deu errado.',
+			'error',
+			4000
+		);
 	}
 };
 
