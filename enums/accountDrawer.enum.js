@@ -5,32 +5,40 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
+import UserDataForm from '../components/forms/UserDataForm';
+
 export const upperDrawerItemsEnum = [
     {
         text: 'Dados Pessoais',
-        icon: <ManageAccountsIcon />
+        icon: <ManageAccountsIcon />,
+        component: <UserDataForm />
     },
     {
         text: 'Reset de Senha',
-        icon: <LockIcon />
+        icon: <LockIcon />,
+        component: null
     },
     {
         text: 'Atividade Recente',
-        icon: <CollectionsIcon />
+        icon: <CollectionsIcon />,
+        component: null
     }
 ];
 
 export const lowerDrawerItemsEnum = [
     {
         text: 'Notícias Cadastradas',
-        icon: <NewspaperIcon />
+        icon: <NewspaperIcon />,
+        component: null
     },
     {
         text: 'Atos Cadastrados',
-        icon: <BorderColorIcon />
+        icon: <BorderColorIcon />,
+        component: null
     },
     {
         text: 'Sugestões de Edição',
-        icon: <EditIcon />
+        icon: <EditIcon />,
+        component: null
     }
 ]
