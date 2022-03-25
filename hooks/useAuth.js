@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import { instance, source, isCancel } from '../configs/axios.config';
 import { Context } from '../contexts/auth.context';
+import { protectedRoutesEnum } from '../enums/protectedRoutes.enum';
 import { renewAuthCookie, getAuthCookie } from '../utils/authCookieManager.util';
 
 export const useAuth = () => {
@@ -32,19 +33,8 @@ export const useAuth = () => {
 			}
 
 			fetch();
-			/* instance.get('/usuario/acesso')
-				.then(data => {
-					renewAuthCookie(data.headers.authorization);
-					dispatch({
-						type: 'PROVIDE-USER',
-						payload: data.data
-					});
-				})
-				.catch(err => {
-					dispatch({ type: 'LOGOUT' });
-					router.push('/');
-				}) */
 		}
+		if (protectedRoutesEnum.includes(router.pathname)) return router.push('/');
 		return () => { source.cancel(); };
 	}, [state.user, dispatch, router]);
 }
