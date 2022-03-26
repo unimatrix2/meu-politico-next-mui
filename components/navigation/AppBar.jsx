@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Menu from '@mui/material/Menu';
+import { useRouter } from 'next/router';
 import Badge from '@mui/material/Badge';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import { useContext, useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import FaceIcon from '@mui/icons-material/Face';
@@ -129,10 +130,12 @@ export default function PrimarySearchAppBar({ mobileOnly, trigger, ...props }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => router.push('/conta')}>
+      <Link href="/conta" passHref>
+        <MenuItem>
           <FaceIcon className={classes.dropdownIcon} />
-        <p>Meu Perfil</p>
-      </MenuItem>
+          <p>Meu Perfil</p>
+        </MenuItem>
+      </Link>
       <MenuItem onClick={() => {
           logout();
           dispatch({ type: 'LOGOUT' });
