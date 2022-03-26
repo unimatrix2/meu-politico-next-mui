@@ -63,6 +63,7 @@ function ResetUserPasswordForm({ snack }) {
 				variant="outlined"
 				margin="normal"
 				required
+				autoFocus
 				fullWidth
 				name="oldPassword"
 				label="Senha Antiga"
@@ -86,6 +87,7 @@ function ResetUserPasswordForm({ snack }) {
 				onChange={formik.handleChange}
 				helperText={formik.touched.password && formik.errors.password}
 				error={formik.touched.password && Boolean(formik.errors.password)}
+				disabled={!formik.dirty}
 			/>
 			<TextField
 				variant="outlined"
@@ -105,6 +107,7 @@ function ResetUserPasswordForm({ snack }) {
 					formik.touched.confirmPassword &&
 					Boolean(formik.errors.confirmPassword)
 				}
+				disabled={!formik.dirty}
 			/>
 			<Button
 				type="submit"

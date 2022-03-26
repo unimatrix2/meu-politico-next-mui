@@ -6,7 +6,6 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import { withSnackBar } from '../SnackBar';
 import { Context } from '../../contexts/auth.context';
-// import { signup } from '../../services/auth.service';
 import signupSchema from '../../validations/signupSchema.validation';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UpdateUserDataForm({ snack }) {
-    const { state, dispatch } = useContext(Context);
+    const { state } = useContext(Context);
 
 	const classes = useStyles();
 
@@ -76,7 +75,6 @@ function UpdateUserDataForm({ snack }) {
 				label="Nome"
 				name="firstName"
 				autoComplete="firstName"
-				autoFocus
 				value={formik.values.firstName}
 				onChange={formik.handleChange}
 				helperText={formik.touched.firstName && formik.errors.firstName}
@@ -91,7 +89,6 @@ function UpdateUserDataForm({ snack }) {
 				label="Sobrenome"
 				name="lastName"
 				autoComplete="lastName"
-				autoFocus
 				value={formik.values.lastName}
 				onChange={formik.handleChange}
 				helperText={formik.touched.lastName && formik.errors.lastName}
@@ -106,7 +103,6 @@ function UpdateUserDataForm({ snack }) {
 				label="E-Mail"
 				name="email"
 				autoComplete="email"
-				autoFocus
 				value={formik.values.email}
 				onChange={formik.handleChange}
 				helperText={formik.touched.email && formik.errors.email}
@@ -122,7 +118,6 @@ function UpdateUserDataForm({ snack }) {
 				label="CPF"
 				name="cpf"
 				autoComplete="cpf"
-				autoFocus
 				value={formik.values.cpf}
 				onChange={formik.handleChange}
 				helperText={formik.touched.cpf && formik.errors.cpf}
@@ -141,6 +136,7 @@ function UpdateUserDataForm({ snack }) {
 				onChange={formik.handleChange}
 				helperText={formik.touched.password && formik.errors.password}
 				error={formik.touched.password && Boolean(formik.errors.password)}
+				disabled={!formik.dirty}
 			/>
 			<TextField
 				variant="outlined"
@@ -160,6 +156,7 @@ function UpdateUserDataForm({ snack }) {
 					formik.touched.confirmPassword &&
 					Boolean(formik.errors.confirmPassword)
 				}
+				disabled={!formik.dirty}
 			/>
 			<Button
 				type="submit"
