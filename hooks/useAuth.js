@@ -36,7 +36,7 @@ export const useAuth = () => {
 				}
 			}
 
-			return fetch();
+			return fetch().then();
 		}
 		return () => { source.cancel(); };
 	}, [state.user, dispatch, router]);
