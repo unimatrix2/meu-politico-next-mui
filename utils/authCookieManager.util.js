@@ -13,10 +13,7 @@ export const setAuthCookie = (token, remember) => {
 
 export const removeAuthCookie = () => cookies.remove('token');
 
-export const getAuthCookie = () => {
-const cookie = cookies.get('token');
-return cookie?.token;
-}
+export const getAuthCookie = () => cookies.get('token')?.token;
 
 export const checkLongTermAuthCookie = () => cookies
 	.get('token').ltc;
@@ -28,3 +25,5 @@ export const renewAuthCookie = (token) => {
 	}
 	return cookies.remove('token');
 }
+
+export const hasAuthCookie = () => Boolean(cookies.get('token')?.token);
