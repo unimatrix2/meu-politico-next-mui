@@ -8,7 +8,6 @@ export default function Account({ themeTrigger }) {
 
 	return (
 		<>
-			{/* <PrimarySearchAppBar trigger={themeTrigger} /> */}
 			<ResponsiveDrawer
 				upperDrawer={upperDrawerItemsEnum}
 				lowerDrawer={lowerDrawerItemsEnum}
