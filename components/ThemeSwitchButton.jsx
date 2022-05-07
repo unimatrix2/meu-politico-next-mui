@@ -16,7 +16,10 @@ export default function ThemeSwitcher({ trigger, landing }) {
 	const classes = useStyles();
 	return (
         <IconButton onClick={() => handleThemeChange(trigger)} size="large">
-            {theme.palette.mode === 'light' ? <Brightness6Icon className={!landing ? classes.lightTheme : null} /> : <Brightness4Icon />}
+            {theme.palette.mode === 'light'
+				? <Brightness6Icon className={!landing ? classes.lightTheme : null} />
+				: <Brightness4Icon />
+			}
         </IconButton>
     );
 }
